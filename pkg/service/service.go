@@ -13,6 +13,10 @@ type Authorization interface {
 
 type ExerciseList interface {
 	Create(userId int, exerciseList czlang.Exercise) (int, error)
+	GetAll(userId int) ([]czlang.Exercise, error)
+	GetById(userId, listId int) (czlang.Exercise, error)
+	Update(userId int, listId int, input czlang.UpdateExerciseInput) error
+	Delete(userId, listId int) error
 }
 
 type ExerciseItem interface {
