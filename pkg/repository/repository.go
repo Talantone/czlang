@@ -19,6 +19,7 @@ type ExerciseList interface {
 }
 
 type ExerciseItem interface {
+	Create(listId int, exerciseItem czlang.ExerciseItem) (int, error)
 }
 
 type Repository struct {
@@ -31,5 +32,6 @@ func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthPostgres(db),
 		ExerciseList:  NewExerciseListPostgres(db),
+		ExerciseItem:  NewExerciseItemPostgres(db),
 	}
 }

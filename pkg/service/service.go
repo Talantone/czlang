@@ -20,6 +20,7 @@ type ExerciseList interface {
 }
 
 type ExerciseItem interface {
+	Create(userId int, listId int, exerciseItem czlang.ExerciseItem) (int, error)
 }
 
 type Service struct {
@@ -32,5 +33,6 @@ func NewService(repo *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repo.Authorization),
 		ExerciseList:  NewExerciseListService(repo.ExerciseList),
+		ExerciseItem:  NewExerciseItemService(repo.ExerciseItem),
 	}
 }
