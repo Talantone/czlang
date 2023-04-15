@@ -15,10 +15,10 @@ type UsersList struct {
 }
 
 type ExerciseItem struct {
-	Id          int    `json:"exercise_id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Done        bool   `json:"done"`
+	Id          int    `json:"exercise_id" db:"id"`
+	Title       string `json:"title" db:"title"`
+	Description string `json:"description" db:"description"`
+	Done        bool   `json:"done" db:"done"`
 }
 
 type ListsItem struct {
@@ -34,6 +34,19 @@ type UpdateExerciseInput struct {
 
 func (i UpdateExerciseInput) Validate() error {
 	if i.Title == nil && i.Description == nil {
+		return errors.New("update struct has no values")
+	}
+	return nil
+}
+
+type UpdateItemInput struct {
+	Title       *string `json:"title"`
+	Description *string `json:"description"`
+	Done        *bool   `json:"done"`
+}
+
+func (i UpdateItemInput) Validate() error {
+	if i.Title == nil && i.Description == nil && i.Done == nil {
 		return errors.New("update struct has no values")
 	}
 	return nil

@@ -20,6 +20,10 @@ type ExerciseList interface {
 
 type ExerciseItem interface {
 	Create(listId int, exerciseItem czlang.ExerciseItem) (int, error)
+	GetAll(userIdd int, listId int) ([]czlang.ExerciseItem, error)
+	GetById(userId, itemId int) (czlang.ExerciseItem, error)
+	Update(userId int, itemId int, input czlang.UpdateItemInput) error
+	Delete(userId, itemId int) error
 }
 
 type Repository struct {
