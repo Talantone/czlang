@@ -7,6 +7,19 @@ import (
 	"strconv"
 )
 
+// @Summary Create exercise item
+// @Security ApiKeyAuth
+// @Tags items
+// @Description create exercise item
+// @ID create-item
+// @Accept  json
+// @Produce  json
+// @Param input body czlang.ExerciseItem true "list info"
+// @Success 201 {integer} integer 1
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id/items [post]
 func (h *Handler) createItem(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -31,6 +44,18 @@ func (h *Handler) createItem(c *gin.Context) {
 	})
 }
 
+// @Summary Get All Items
+// @Security ApiKeyAuth
+// @Tags items
+// @Description get all items
+// @ID get-all-items
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} []czlang.ExerciseItem
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id/items [get]
 func (h *Handler) getAllItems(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -49,6 +74,18 @@ func (h *Handler) getAllItems(c *gin.Context) {
 	c.JSON(http.StatusOK, items)
 }
 
+// @Summary Get Item By Id
+// @Security ApiKeyAuth
+// @Tags items
+// @Description get list by id
+// @ID get-item-by-id
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} czlang.ExerciseItem
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id/items/:item_id [get]
 func (h *Handler) getItemById(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
