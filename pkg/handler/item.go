@@ -14,7 +14,7 @@ import (
 // @ID create-item
 // @Accept  json
 // @Produce  json
-// @Param input body czlang.ExerciseItem true "list info"
+// @Param input body czlang.ExerciseItem true "item info"
 // @Success 201 {integer} integer 1
 // @Failure 400,404 {object} Error
 // @Failure 500 {object} Error
@@ -77,7 +77,7 @@ func (h *Handler) getAllItems(c *gin.Context) {
 // @Summary Get Item By Id
 // @Security ApiKeyAuth
 // @Tags items
-// @Description get list by id
+// @Description get item by id
 // @ID get-item-by-id
 // @Accept  json
 // @Produce  json
@@ -108,6 +108,20 @@ func (h *Handler) getItemById(c *gin.Context) {
 	c.JSON(http.StatusOK, item)
 }
 
+// @Summary Update Item
+// @Security ApiKeyAuth
+// @Tags items
+// @Description update item
+// @ID update-item
+// @Accept  json
+// @Produce  json
+// @Param id path int true "item id"
+// @Param input body czlang.UpdateItemInput true "item id and update item input"
+// @Success 200 {string} string "ok"
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id/items/:item_id [put]
 func (h *Handler) updateItem(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -130,6 +144,19 @@ func (h *Handler) updateItem(c *gin.Context) {
 	c.JSON(http.StatusOK, statusResponse{"ok"})
 }
 
+// @Summary Delete Item
+// @Security ApiKeyAuth
+// @Tags items
+// @Description delete item
+// @ID delete-item
+// @Accept  json
+// @Produce  json
+// @Param id path int true "item id"
+// @Success 200 {string} string "ok"
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id/items/:item_id [delete]
 func (h *Handler) deleteItem(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {

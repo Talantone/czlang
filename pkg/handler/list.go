@@ -105,6 +105,20 @@ func (h *Handler) getListById(c *gin.Context) {
 	c.JSON(http.StatusOK, list)
 }
 
+// @Summary Update List
+// @Security ApiKeyAuth
+// @Tags lists
+// @Description update list
+// @ID update-list
+// @Accept  json
+// @Produce  json
+// @Param id path int true "item id"
+// @Param input body czlang.UpdateExerciseInput true "update exercise input"
+// @Success 200 {string} string "ok"
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id [put]
 func (h *Handler) updateList(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -127,6 +141,19 @@ func (h *Handler) updateList(c *gin.Context) {
 	c.JSON(http.StatusOK, statusResponse{"ok"})
 }
 
+// @Summary Delete List
+// @Security ApiKeyAuth
+// @Tags lists
+// @Description delete list
+// @ID delete-item
+// @Accept  json
+// @Produce  json
+// @Param id path int true "list id"
+// @Success 200 {string} string "ok"
+// @Failure 400,404 {object} Error
+// @Failure 500 {object} Error
+// @Failure default {object} Error
+// @Router /api/lists/:id [delete]
 func (h *Handler) deleteList(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
