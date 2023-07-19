@@ -8,11 +8,13 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - "db"
     environment:
       - DB_PASSWORD=qwerty
 
   db:
+    container_name: "db"
+    hostname: "db"
     restart: always
     image: postgres:latest
     volumes:
@@ -20,4 +22,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=qwerty
     ports:
-      - "5436:5432"
+      - "5436:5436"
